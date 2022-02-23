@@ -215,7 +215,7 @@ class FeedbackModel(tez.Model):
 
 
 if __name__ == "__main__":
-    NUM_JOBS = -1
+    NUM_JOBS = 4
     args = parse_args()
     seed_everything(args.seed)
     os.makedirs(args.output, exist_ok=True)
