@@ -34,6 +34,7 @@ def parse_args():
     parser.add_argument("--lr", type=float, required=True)
     parser.add_argument("--output", type=str, default="../model", required=False)
     parser.add_argument("--input", type=str, default="../input", required=False)
+    parser.add_argument("--seed", type=int, default=42, required=False)
     parser.add_argument("--max_len", type=int, default=1024, required=False)
     parser.add_argument("--batch_size", type=int, default=8, required=False)
     parser.add_argument("--valid_batch_size", type=int, default=8, required=False)
@@ -214,9 +215,9 @@ class FeedbackModel(tez.Model):
 
 
 if __name__ == "__main__":
-    NUM_JOBS = 12
+    NUM_JOBS = -1
     args = parse_args()
-    seed_everything(42)
+    seed_everything(args.seed)
     os.makedirs(args.output, exist_ok=True)
     df = pd.read_csv(os.path.join(args.input, "train_folds.csv"))
 
